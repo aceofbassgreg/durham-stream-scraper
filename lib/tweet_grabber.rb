@@ -1,15 +1,17 @@
-require 'yaml'
+require_relative '../config/twitter_client'
+
 
 class TweetGrabber
 
-  attr_reader :api_key
+  attr_reader :client
 
-  def initialize(api_key)
-    @api_key = api_key
+  def initialize(client)
+    @client = client
   end
 
   def self.create!
-    config = YAML::load(File.open("config/twitter.yml","r"))
-    TweetGrabber.new(config["api_key"])
+    TweetGrabber.new(Client)
   end
+
+  
 end
