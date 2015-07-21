@@ -17,8 +17,7 @@ i.import_for_api             #Imports data, formats for api
 
 TO DO:
 
-* Create executable file in bin directory
-* Use whenever gem to set up cron job to periodically gather data (just tweets for now)
 * Set up to deploy via capistrano
+* Write tests for Onboarder
 * Configure to POST data to RTP Events microservice
 * Write RTP Events microservice
