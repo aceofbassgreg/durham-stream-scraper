@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.3.8)
     buftok (0.2.0)
+    chronic (0.10.2)
     coderay (1.1.0)
     equalizer (0.0.11)
     faraday (0.9.1)
@@ -35,6 +36,8 @@ GEM
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -43,3 +46,4 @@ DEPENDENCIES
   minitest
   pry
   twitter
+  whenever
