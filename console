@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'pry'
+load 'lib/tweet_grabber.rb'
+
+Pry.start
