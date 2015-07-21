@@ -1,4 +1,4 @@
-require_relative '../config/twitter_client'
+require_relative '../../config/twitter_client'
 
 require 'core'
 
@@ -30,10 +30,12 @@ Usernames = [
     RTPScraper::TweetGrabber.new(Client)
   end
 
-  def recent_durham_tweets
-    @recent_durham_tweets ||= Usernames.map { |username|
-      { username.to_sym => client.user_timeline(username) }
-    }
+  def recent_durham_tweets_by_username
+    @recent_durham_tweets ||= {}.tap do |hash|
+      Usernames.map { |username|
+        hash[username.to_sym] = client.user_timeline(username)
+      }
+    end
   end
 
 

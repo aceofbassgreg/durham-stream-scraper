@@ -13,7 +13,8 @@ class RTPScraper::Tweet
     { 
       text_to_display: t.full_text,
       created_at:      t.created_at,
-      hashtags:        t.hashtags
+      hashtags:        t.hashtags,
+      md5:             t.md5
     }
   end
 
@@ -26,6 +27,12 @@ class RTPScraper::Tweet
   end
 
   def hashtags
-    tweet_object.hashtags
+    tweet_object.hashtags.map {|hashtag_object|
+      hashtag_object.text 
+    }
+  end
+
+  def md5
+    Digest::MD5.hexdigest(full_text)
   end
 end
