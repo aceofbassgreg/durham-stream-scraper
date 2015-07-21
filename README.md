@@ -8,12 +8,15 @@ To interact via a console session, run
 bundle exec ./console
 `
 
-and go from there.
+To import all tweets to pass to the RTP Events API:
+
+`
+i = RTPScraper::Importer.new
+i.import_for_api             #Imports data, formats for api
+`
 
 TO DO:
 
-* Create general importer.rb file that gathers the data
-* Add method to get tweet id
 * Create executable file in bin directory
 * Use whenever gem to set up cron job to periodically gather data (just tweets for now)
 * Set up to deploy via capistrano
