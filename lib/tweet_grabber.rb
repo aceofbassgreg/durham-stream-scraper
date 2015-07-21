@@ -1,3 +1,5 @@
+require 'yaml'
+
 class TweetGrabber
 
   attr_reader :api_key
