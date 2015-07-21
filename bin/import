@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'pry'
 load '__load_path__.rb'
 load 'importer.rb'
 
-Pry.start
+i = RTPScraper::Importer.new
+i.import_for_api
