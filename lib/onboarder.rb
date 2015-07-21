@@ -1,5 +1,5 @@
 require 'core'
-require 'tweet'
+require 'rtp_twitter'
 
 class RTPScraper::Onboarder
 
