@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+
 require 'pry'
-load 'lib/tweet_grabber.rb'
+load 'tweet_grabber.rb'
 
 Pry.start
