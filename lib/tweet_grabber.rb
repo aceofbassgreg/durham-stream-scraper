@@ -1,6 +1,8 @@
 require_relative '../config/twitter_client'
 
-class TweetGrabber
+require 'core'
+
+class RTPScraper::TweetGrabber
 
 Usernames = [
               "ponysaurusbrew",
@@ -25,7 +27,7 @@ Usernames = [
   end
 
   def self.create!
-    TweetGrabber.new(Client)
+    RTPScraper::TweetGrabber.new(Client)
   end
 
   def recent_durham_tweets
