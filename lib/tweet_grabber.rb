@@ -1,7 +1,22 @@
 require_relative '../config/twitter_client'
 
-
 class TweetGrabber
+
+Usernames = [
+              "ponysaurusbrew",
+              "G2B_restaurant",
+              "MonutsDonuts",
+              "BullCityBurger",
+              "DurhamFarmerMkt",
+              "SamsQuikShop",
+              "bullcityfood",
+              "motorcomh",
+              "downtowndurham",
+              "wholefoods_drh",
+              "carpedurham",
+              "indyweek",
+              "bullcity"
+            ]
 
   attr_reader :client
 
@@ -13,5 +28,11 @@ class TweetGrabber
     TweetGrabber.new(Client)
   end
 
-  
+  def recent_durham_tweets
+    @recent_durham_tweets ||= Usernames.map { |username|
+      { username.to_sym => client.user_timeline(username) }
+    }
+  end
+
+
 end
