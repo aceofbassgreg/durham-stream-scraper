@@ -17,7 +17,8 @@ Usernames = [
               "wholefoods_drh",
               "carpedurham",
               "indyweek",
-              "bullcity"
+              "bullcity",
+              "fullsteam"
             ]
 
   attr_reader :client
