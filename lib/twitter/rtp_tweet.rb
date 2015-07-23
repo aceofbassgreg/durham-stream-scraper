@@ -12,9 +12,10 @@ class RTPScraper::Tweet
     t = RTPScraper::Tweet.new(tweet_object)
     { 
       text_to_display: t.full_text,
-      created_at:      t.created_at,
+      text_created_at: t.created_at,
       hashtags:        t.hashtags,
-      md5:             t.md5
+      md5:             t.md5,
+      source:          "Twitter"
     }
   end
 
