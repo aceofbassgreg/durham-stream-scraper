@@ -4,14 +4,15 @@ require 'twitter/tweet_grabber'
 
 require 'json'
 require 'net/http'
+require 'yaml'
 
 class RTPScraper::Importer
 
   attr_reader :tweet_grabber
 
+  #FIXME => will generalize this later to accept any kind of scraper/grabber
   def initialize
     @tweet_grabber = RTPScraper::TweetGrabber.create!
-
   end
 
   def tweets_by_username
@@ -32,8 +33,11 @@ class RTPScraper::Importer
     data = onboard_data_for_api
     data.map {|entry|
       entry.to_json
-
     }
+  end
+
+  def service_url
+    @service_url ||= YAML::load(File.open("config/services.yml"))[ENV["ENV"]]
   end
 
 end
