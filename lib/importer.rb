@@ -5,6 +5,7 @@ require 'twitter/tweet_grabber'
 require 'json'
 require 'net/http'
 require 'yaml'
+require 'uri'
 
 class RTPScraper::Importer
 
@@ -32,8 +33,17 @@ class RTPScraper::Importer
   def upload_to_api
     data = onboard_data_for_api
     data.map {|entry|
-      entry.to_json
+      post_to_api(entry.to_json)
     }
+  end
+
+  def post_to_api(json)
+    uri = URI.parse(service_url + "/entries")
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Post.new(uri.request_uri, 
+    initheader = {'Content-Type' =>'application/json'})
+    request.body = json
+    resp = http.request(request)
   end
 
   def service_url
