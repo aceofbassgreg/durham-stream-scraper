@@ -17,7 +17,8 @@ i.import_for_api             #Imports data, formats for api
 
 TO DO:
 
+* Move Usernames to config file, separate into categories
+* Subclass Tweet by CategoryTweet, add category to tags
 * Set up to deploy via capistrano
 * Write tests for Onboarder
 * Configure to POST data to RTP Events microservice
-* Write RTP Events microservice
