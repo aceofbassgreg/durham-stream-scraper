@@ -2,6 +2,9 @@ require 'core'
 require 'onboarder'
 require 'twitter/tweet_grabber'
 
+require 'json'
+require 'net/http'
+
 class RTPScraper::Importer
 
   attr_reader :tweet_grabber
@@ -15,14 +18,22 @@ class RTPScraper::Importer
     tweet_grabber.recent_durham_tweets_by_username
   end
 
-  def import_for_api
-    
-    {}.tap do |hash_for_api| 
-      tweets_by_username.map { |username, array|
-        onboarder = RTPScraper::Onboarder.new(array)
-        hash_for_api[username.to_sym] = onboarder.process_payload 
-      }
-    end
+  def onboard_data_for_api
+    tweets_by_username.map { |username, array|
+      onboarder = RTPScraper::Onboarder.new(array)
+      processed_tweets = onboarder.process_payload
+      processed_tweets.map {|h| h[:author] = "@#{username.to_s}"}
+      processed_tweets
+    }.flatten
+  end
+
+
+  def upload_to_api
+    data = onboard_data_for_api
+    data.map {|entry|
+      entry.to_json
+
+    }
   end
 
 end
