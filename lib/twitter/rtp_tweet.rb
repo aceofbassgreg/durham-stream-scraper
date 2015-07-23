@@ -13,7 +13,7 @@ class RTPScraper::Tweet
     { 
       text_to_display: t.full_text,
       text_created_at: t.created_at,
-      hashtags:        t.hashtags,
+      hashtags:        t.tags,
       md5:             t.md5,
       source:          "Twitter"
     }
@@ -27,7 +27,7 @@ class RTPScraper::Tweet
     tweet_object.created_at
   end
 
-  def hashtags
+  def tags
     tweet_object.hashtags.map {|hashtag_object|
       hashtag_object.text 
     }
