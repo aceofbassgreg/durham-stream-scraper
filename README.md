@@ -12,15 +12,14 @@ You will need authentication from Twitter and will have to store your keys in a 
 
 To interact via a console session, run 
 
-`
+```ruby
 ENV=development bundle exec ./console
 `
 
 To import all tweets to pass to the RTP Events API:
 
-`
+```ruby
 tg = DurhamScraper::TweetGrabber.create!
-
 tg.recent_durham_tweets_by_username         
 `
 
@@ -33,15 +32,14 @@ Clone the Durham Stream Service, install dependencies, and then launch the serve
 
 Then, from the command line, run:
 
-`
+```ruby
 ENV=development bundle exec ruby bin/import
-`
+```
 
 Or, launch a console session and run the following:
 
-`
+```ruby
 i = DurhamScraper::Importer.new
-
 i.upload_to_api
 `
 
