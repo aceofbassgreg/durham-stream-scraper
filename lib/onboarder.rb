@@ -1,7 +1,7 @@
 require 'core'
-require 'rtp_twitter'
+require 'durham_twitter'
 
-class RTPScraper::Onboarder
+class DurhamScraper::Onboarder
 
   attr_reader :payload
 
@@ -11,7 +11,7 @@ class RTPScraper::Onboarder
 
   def process_payload
     payload.map {  |obj|
-      klass = rtpscraper_klass(obj.class)
+      klass = durhamscraper_klass(obj.class)
       klass.return_contents!(obj)
     }
   end
@@ -20,8 +20,8 @@ class RTPScraper::Onboarder
     klass.to_s.split('::').last
   end
 
-  def rtpscraper_klass(klass)
-    str = "RTPScraper::" + demodulize(klass)
+  def durhamscraper_klass(klass)
+    str = "DurhamScraper::" + demodulize(klass)
     Object.const_get(str)
   end
 

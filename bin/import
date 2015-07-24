@@ -3,5 +3,5 @@
 load '__load_path__.rb'
 load 'importer.rb'
 
-i = RTPScraper::Importer.new
-i.import_for_api
+i = DurhamScraper::Importer.new
+i.upload_to_api

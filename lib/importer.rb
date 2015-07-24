@@ -7,13 +7,13 @@ require 'net/http'
 require 'yaml'
 require 'uri'
 
-class RTPScraper::Importer
+class DurhamScraper::Importer
 
   attr_reader :tweet_grabber
 
   #FIXME => will generalize this later to accept any kind of scraper/grabber
   def initialize
-    @tweet_grabber = RTPScraper::TweetGrabber.create!
+    @tweet_grabber = DurhamScraper::TweetGrabber.create!
   end
 
   def tweets_by_username
@@ -22,7 +22,7 @@ class RTPScraper::Importer
 
   def onboard_data_for_api
     tweets_by_username.map { |username, array|
-      onboarder = RTPScraper::Onboarder.new(array)
+      onboarder = DurhamScraper::Onboarder.new(array)
       processed_tweets = onboarder.process_payload
       processed_tweets.map {|h| h[:author] = "@#{username.to_s}"}
       processed_tweets
