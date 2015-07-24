@@ -1,6 +1,6 @@
 require 'core'
 
-class RTPScraper::Tweet
+class DurhamScraper::Tweet
 
   attr_reader :tweet_object
 
@@ -9,7 +9,7 @@ class RTPScraper::Tweet
   end
 
   def self.return_contents!(tweet_object)
-    t = RTPScraper::Tweet.new(tweet_object)
+    t = DurhamScraper::Tweet.new(tweet_object)
     { 
       text_to_display: t.full_text,
       text_created_at: t.created_at,
