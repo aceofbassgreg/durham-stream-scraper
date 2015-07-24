@@ -1,8 +1,11 @@
+DURHAM STREAM SCRAPER
+------------------------
+
 This library retrieves data about news, events, and happenings from the Triangle area.
 
 This is in beta form and at the moment only gathers data by retrieving timelines by specified users.
 
-GATHERING TWEETS
+Gathering Tweets from Durham Tweeters
 -------------------------
 
 You will need authentication from Twitter and will have to store your keys in a config/twitter_keys.yml file in order to use this library. See config/twitter_client.rb for more details.
@@ -17,6 +20,7 @@ To import all tweets to pass to the RTP Events API:
 
 `
 tg = DurhamScraper::TweetGrabber.create!
+
 tg.recent_durham_tweets_by_username         
 `
 
@@ -37,6 +41,7 @@ Or, launch a console session and run the following:
 
 `
 i = DurhamScraper::Importer.new
+
 i.upload_to_api
 `
 
