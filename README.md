@@ -14,14 +14,14 @@ To interact via a console session, run
 
 ```ruby
 ENV=development bundle exec ./console
-`
+```
 
 To import all tweets to pass to the RTP Events API:
 
 ```ruby
 tg = DurhamScraper::TweetGrabber.create!
 tg.recent_durham_tweets_by_username         
-`
+```
 
 This will return Tweet objects (see the twitter gem for additional info)
 
@@ -41,7 +41,7 @@ Or, launch a console session and run the following:
 ```ruby
 i = DurhamScraper::Importer.new
 i.upload_to_api
-`
+```
 
 TO DO:
 
