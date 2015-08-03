@@ -19,7 +19,7 @@ ENV=development bundle exec ./console
 To import all tweets to pass to the RTP Events API:
 
 ```ruby
-tg = DurhamScraper::TweetGrabber.create!
+tg = DurhamScraper::TwitterTimeline.create!
 tg.recent_durham_tweets_by_username         
 ```
 

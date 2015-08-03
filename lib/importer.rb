@@ -13,7 +13,7 @@ class DurhamScraper::Importer
 
   #FIXME => will generalize this later to accept any kind of scraper/grabber
   def initialize
-    @tweet_grabber = DurhamScraper::TweetGrabber.create!
+    @tweet_grabber = DurhamScraper::TwitterTimeline.create!
   end
 
   def tweets_by_username
