@@ -1,0 +1,24 @@
+#add timelines to scrape in proper category as category is used for 
+#tagging purposes (as is tweet content and any tags assigned by 
+#user)
+beer:
+  - "ponysaurusbrew"
+  - "G2B_restaurant"
+  - "BullCityBurger"
+  - "fullsteam"
+  - "SamsQuikShop"
+
+food:
+  - "MonutsDonuts"
+  - "bullcityfood"
+  - "wholefoods_drh"
+
+events:
+  - "downtowndurham"
+  - "DurhamFarmerMkt"
+  - "motorcomh"
+  - "carpedurham"
+
+misc:
+  - "indyweek"
+  - "bullcity"
