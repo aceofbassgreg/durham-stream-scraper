@@ -15,7 +15,8 @@ class DurhamScraper::Tweet
       text_created_at: t.created_at,
       tags:            t.tags,
       md5:             t.md5,
-      source:          "Twitter"
+      source:          "Twitter",
+      link:            link
     }
   end
 
@@ -31,6 +32,10 @@ class DurhamScraper::Tweet
     tweet_object.hashtags.map {|hashtag_object|
       hashtag_object.text 
     }
+  end
+
+  def link
+    tweet_object.url.site + tweet_object.url.path
   end
 
   def md5
