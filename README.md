@@ -8,7 +8,7 @@ This is in beta form and at the moment only gathers data by retrieving timelines
 Gathering Tweets from Durham Tweeters
 -------------------------
 
-You will need authentication from Twitter and will have to store your keys in a config/twitter_keys.yml file in order to use this library. See config/twitter_client.rb for more details.
+You will need authentication from Twitter and will have to store your keys in a config/twitter/twitter_keys.yml file in order to use this library. See config/twitter/twitter_client.rb for more details.
 
 To interact via a console session, run 
 

@@ -1,4 +1,4 @@
-require_relative '../../config/twitter_client'
+require_relative '../../config/twitter/twitter_client'
 require 'core'
 
 require 'yaml'
@@ -9,7 +9,7 @@ class DurhamScraper::TwitterImporter
 
   def initialize(client)
     @client    = client
-    @usernames = YAML::load(File.open('config/twitter_users.yml','r'))
+    @usernames = YAML::load(File.open('config/twitter/twitter_users.yml','r'))
   end
 
   def self.create!
