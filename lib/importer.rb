@@ -1,6 +1,6 @@
 require 'core'
 require 'onboarder'
-require 'twitter/tweet_grabber'
+require 'twitter/twitter_timeline_grabber'
 
 require 'json'
 require 'net/http'
