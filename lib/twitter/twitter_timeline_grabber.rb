@@ -17,7 +17,7 @@ class DurhamScraper::TwitterTimeline
   end
 
   def recent_durham_tweets_by_category
-    [].tap do |results_arr|
+    @recent_durham_tweets_by_category ||= [].tap do |results_arr|
       usernames.map { |category,usernames_arr|
         results_arr << tweets_by_username(category,usernames_arr)
       }
