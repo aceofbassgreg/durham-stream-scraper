@@ -45,7 +45,5 @@ i.upload_to_api
 
 TO DO:
 
-* Move Usernames to config file, separate into categories
-* Subclass Tweet by CategoryTweet, add category to tags
 * Set up to deploy via capistrano
 * Write tests for Onboarder
