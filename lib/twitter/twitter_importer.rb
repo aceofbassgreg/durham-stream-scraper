@@ -25,7 +25,7 @@ class DurhamScraper::TwitterImporter
   end
 
   def all_tweets_with_durham_tag
-    @all_tweets_with_durham_tag ||= client.search("#durham")
+    @all_tweets_with_durham_tag ||= search_for_hashtag("#durham")
   end
 
   private
@@ -37,5 +37,9 @@ class DurhamScraper::TwitterImporter
             Hash[username.to_sym, client.user_timeline(username)]
           }
         end
+      end
+
+      def search_for_hashtag(hashtag)
+        client.search(hashtag)
       end
 end
