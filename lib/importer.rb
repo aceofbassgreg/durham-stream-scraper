@@ -16,19 +16,19 @@ class DurhamScraper::Importer
     @tweet_grabber = DurhamScraper::TwitterTimeline.create!
   end
 
-  def tweets_by_username
-    tweet_grabber.recent_durham_tweets_by_username
+  def tweets_by_category
+    tweet_grabber.recent_durham_tweets_by_category
   end
 
   def onboard_data_for_api
-    tweets_by_username.map { |username, array|
-      onboarder = DurhamScraper::Onboarder.new(array)
-      processed_tweets = onboarder.process_payload
-      processed_tweets.map {|h| h[:author] = "@#{username.to_s}"}
-      processed_tweets
+    tweets_by_category.map {|category_hash|
+      category = category_hash[:category]
+
+      category_hash[:tweets].map { |tweets_by_username|
+        process_tweets_by(tweets_by_username,category)
+      } 
     }.flatten
   end
-
 
   def upload_to_api
     data = onboard_data_for_api
@@ -49,5 +49,19 @@ class DurhamScraper::Importer
   def service_url
     @service_url ||= YAML::load(File.open("config/services.yml"))[ENV["ENV"]]
   end
+
+  private
+  
+      def process_tweets_by(tweets_by_username,category)
+        tweets_by_username.map { |username, array|
+          onboarder = DurhamScraper::Onboarder.new(array)
+          processed_tweets = onboarder.process_payload
+          processed_tweets.map { |h| 
+            h[:author] = "@#{username.to_s}"
+            h[:tags] << category unless h[:tags].include?(category)
+          }
+          processed_tweets
+        }.flatten
+      end
 
 end
