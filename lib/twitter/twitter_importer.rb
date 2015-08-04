@@ -24,6 +24,10 @@ class DurhamScraper::TwitterImporter
     end
   end
 
+  def all_tweets_with_durham_tag
+    @all_tweets_with_durham_tag ||= client.search("#durham")
+  end
+
   private
 
       def tweets_by_username(category,usernames_arr)
