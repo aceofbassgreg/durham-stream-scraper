@@ -1,6 +1,6 @@
 require 'core'
 require 'onboarder'
-require 'twitter/twitter_timeline_grabber'
+require 'twitter/twitter_importer'
 
 require 'json'
 require 'net/http'
@@ -13,7 +13,7 @@ class DurhamScraper::Importer
 
   #FIXME => will generalize this later to accept any kind of scraper/grabber
   def initialize
-    @tweet_grabber = DurhamScraper::TwitterTimeline.create!
+    @tweet_grabber = DurhamScraper::TwitterImporter.create!
   end
 
   def tweets_by_category

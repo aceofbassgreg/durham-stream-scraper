@@ -1,2 +1,2 @@
-require 'twitter/twitter_timeline_grabber'
+require 'twitter/twitter_importer'
 require 'twitter/durham_tweet'

@@ -3,7 +3,7 @@ require 'core'
 
 require 'yaml'
 
-class DurhamScraper::TwitterTimeline
+class DurhamScraper::TwitterImporter
 
   attr_reader :client, :usernames
 
@@ -13,7 +13,7 @@ class DurhamScraper::TwitterTimeline
   end
 
   def self.create!
-    DurhamScraper::TwitterTimeline.new(Client)
+    DurhamScraper::TwitterImporter.new(Client)
   end
 
   def recent_durham_tweets_by_category

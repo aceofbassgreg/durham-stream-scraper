@@ -19,7 +19,7 @@ ENV=development bundle exec ./console
 To import all tweets to pass to the RTP Events API:
 
 ```ruby
-tg = DurhamScraper::TwitterTimeline.create!
+tg = DurhamScraper::TwitterImporter.create!
 tg.recent_durham_tweets_by_username         
 ```
 
@@ -45,5 +45,7 @@ i.upload_to_api
 
 TO DO:
 
+* GET tweets by hashtag (#Durham etc)
+* Scrape INDY weekly or some other site(s)
 * Set up to deploy via capistrano
 * Write tests for Onboarder
