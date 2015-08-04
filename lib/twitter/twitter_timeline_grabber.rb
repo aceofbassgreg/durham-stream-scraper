@@ -1,43 +1,37 @@
 require_relative '../../config/twitter_client'
-
 require 'core'
+
+require 'yaml'
 
 class DurhamScraper::TwitterTimeline
 
-Usernames = [
-              "ponysaurusbrew",
-              "G2B_restaurant",
-              "MonutsDonuts",
-              "BullCityBurger",
-              "DurhamFarmerMkt",
-              "SamsQuikShop",
-              "bullcityfood",
-              "motorcomh",
-              "downtowndurham",
-              "wholefoods_drh",
-              "carpedurham",
-              "indyweek",
-              "bullcity",
-              "fullsteam"
-            ]
-
-  attr_reader :client
+  attr_reader :client, :usernames
 
   def initialize(client)
-    @client = client
+    @client    = client
+    @usernames = YAML::load(File.open('config/twitter_users.yml','r'))
   end
 
   def self.create!
     DurhamScraper::TwitterTimeline.new(Client)
   end
 
-  def recent_durham_tweets_by_username
-    @recent_durham_tweets ||= {}.tap do |hash|
-      Usernames.map { |username|
-        hash[username.to_sym] = client.user_timeline(username)
+  def recent_durham_tweets_by_category
+    [].tap do |results_arr|
+      usernames.map { |category,usernames_arr|
+        results_arr << tweets_by_username(category,usernames_arr)
       }
     end
   end
 
+  private
 
+      def tweets_by_username(category,usernames_arr)
+        {}.tap do |category_hash|
+          category_hash[:category] = category
+          category_hash[:tweets] = usernames_arr.map { |username|
+            Hash[username.to_sym, client.user_timeline(username)]
+          }
+        end
+      end
 end
