@@ -45,7 +45,7 @@ i.upload_to_api
 
 TO DO:
 
-* GET tweets by hashtag (#Durham etc)
+* Regex parsing of tweets for purpose of adding tags
 * Scrape INDY weekly or some other site(s)
 * Set up to deploy via capistrano
 * Write tests for Onboarder
