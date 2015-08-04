@@ -16,7 +16,7 @@ class DurhamScraper::Tweet
       tags:            t.tags,
       md5:             t.md5,
       source:          "Twitter",
-      link:            link
+      link:            t.link
     }
   end
 
