@@ -11,7 +11,15 @@ class DurhamScraper::Importer
 
   attr_reader :twitter_importer, :service_wrapper
 
-  #FIXME => will generalize this later to accept any kind of scraper/grabber
+  #This class will be composed of the various Importer/Scraper objects,
+  #and the primary function will be to kick off each import and then POST
+  #to the API. The POSTing should probably be its own class and this class 
+  #can then just focus on importing.
+
+  #I envision having the main method have an array of Importer constants, and
+  #then iterate through each one to import all of the data
+
+  
   def initialize
     @twitter_hashtags  = YAML::load(File.open('config/twitter/hashtags.yml','r'))
     @twitter_importer  = DurhamScraper::TwitterImporter.create!
