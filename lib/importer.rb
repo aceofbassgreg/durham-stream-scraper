@@ -1,23 +1,30 @@
 require 'core'
 require 'onboarder'
+require 'service_wrapper'
 require 'twitter/twitter_importer'
 
 require 'json'
 require 'net/http'
-require 'yaml'
 require 'uri'
 
 class DurhamScraper::Importer
 
-  attr_reader :tweet_grabber
+  attr_reader :twitter_importer, :service_wrapper
 
   #FIXME => will generalize this later to accept any kind of scraper/grabber
   def initialize
-    @tweet_grabber = DurhamScraper::TwitterImporter.create!
+    @twitter_hashtags  = YAML::load(File.open('config/twitter/hashtags.yml','r'))
+    @twitter_importer  = DurhamScraper::TwitterImporter.create!
+    @service_wrapper   = DurhamScraper::ServiceWrapper.new
+  end
+
+  def post_onboarded_data_to_api
+    data = onboard_data_for_api
+    service_wrapper.upload_to_api(data)
   end
 
   def tweets_by_category
-    tweet_grabber.recent_durham_tweets_by_category
+    twitter_importer.recent_durham_tweets_by_category
   end
 
   def onboard_data_for_api
@@ -28,26 +35,6 @@ class DurhamScraper::Importer
         process_tweets_by(tweets_by_username,category)
       } 
     }.flatten
-  end
-
-  def upload_to_api
-    data = onboard_data_for_api
-    data.map {|entry|
-      post_to_api(entry.to_json)
-    }
-  end
-
-  def post_to_api(json)
-    uri = URI.parse(service_url + "/entries")
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Post.new(uri.request_uri, 
-    initheader = {'Content-Type' =>'application/json'})
-    request.body = json
-    resp = http.request(request)
-  end
-
-  def service_url
-    @service_url ||= YAML::load(File.open("config/services.yml"))[ENV["ENV"]]
   end
 
   private

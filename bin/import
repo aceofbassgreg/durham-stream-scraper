@@ -4,4 +4,4 @@ load '__load_path__.rb'
 load 'importer.rb'
 
 i = DurhamScraper::Importer.new
-i.upload_to_api
+i.post_onboarded_data_to_api

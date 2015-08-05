@@ -25,7 +25,7 @@ class DurhamScraper::TwitterImporter
   end
 
   def all_tweets_with_durham_tag
-    @all_tweets_with_durham_tag ||= search_for_hashtag("#durham")
+    @all_tweets_with_durham_tag ||= import_for_hashtag("#durham")
   end
 
   private
@@ -34,12 +34,16 @@ class DurhamScraper::TwitterImporter
         {}.tap do |category_hash|
           category_hash[:category] = category
           category_hash[:tweets] = usernames_arr.map { |username|
-            Hash[username.to_sym, client.user_timeline(username)]
+            Hash[username.to_sym, import_user_timeline(username)]
           }
         end
       end
 
-      def search_for_hashtag(hashtag)
+      def import_user_timeline(username)
+        client.user_timeline(username)
+      end
+
+      def import_for_hashtag(hashtag)
         client.search(hashtag)
       end
 end
